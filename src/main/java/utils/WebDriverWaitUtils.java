@@ -1,6 +1,7 @@
 package utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,6 +17,7 @@ public class WebDriverWaitUtils {
 
     public static boolean waitUntilVisibilityOfElements(WebDriver driver, List<WebElement> elements) {
         return new WebDriverWait(driver, 10)
+                .ignoring(StaleElementReferenceException.class)
                 .until(ExpectedConditions.visibilityOfAllElements(elements)) != null;
     }
 

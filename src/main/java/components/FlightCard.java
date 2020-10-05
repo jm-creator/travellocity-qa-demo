@@ -29,17 +29,19 @@ public class FlightCard extends BasePage {
     }
 
     public boolean sortByDurationSorted() {
+        WebDriverWaitUtils.waitUntilClickableOfElement(getDriver(), sortDropdownBy);
         Select selectSortedType = new Select(sortDropdownBy);
         selectSortedType.selectByVisibleText("Duration (Shortest)");
+      //  WebDriverWaitUtils.waitUntilClickableOfElement(getDriver(), sortDropdownBy);
         WebDriverWaitUtils.waitUntilVisibilityOfElements(getDriver(), durationFlights);
-        
         List<String> timeValueResults = durationFlights.stream()
                 .map(WebElement::getText)
                 .filter(e -> e.matches("\\d\\dh\\s\\dm|\\dh\\s\\dm"))
+                .map(s -> s.replaceAll("h","0"))
+                .map(s -> s.replaceAll("[^0-9]", ""))
                 .collect(Collectors.toList());
 
-        timeValueResults.forEach(s -> s.replaceAll("h", "0").replaceAll("[^0-9]", ""));
-
+        System.out.println(timeValueResults);
         return Ordering
                 .natural()
                 .isOrdered(
