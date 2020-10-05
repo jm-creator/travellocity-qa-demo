@@ -6,11 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class WebDriverWaitUtils {
     public static boolean waitUntilClickableOfElement(WebDriver driver, WebElement element) {
         return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.elementToBeClickable(element)) != null;
     }
+
+    public static boolean waitUntilVisibilityOfElements(WebDriver driver, List<WebElement> elements) {
+        return new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.visibilityOfAllElements(elements)) != null;
+    }
+
     public static boolean waitUntilClickableOfElement(WebDriver driver, By by) {
         return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.elementToBeClickable(driver.findElement(by))) != null;
