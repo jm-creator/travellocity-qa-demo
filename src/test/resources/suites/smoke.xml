@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name = "smoke" parallel="tests" thread-count="2">
-    <groups>
-        <define name="group1">
-            <include name="test1"/>
-        </define>
-        <run>
-            <include name="group1"/>
-        </run>
-    </groups>
-    <test name="test1">
+<suite name = "smoke">
+    <test name="sortByDurationFlightResultPageTest">
        <classes>
            <class name="ui.FlightsTests"/>
        </classes>
