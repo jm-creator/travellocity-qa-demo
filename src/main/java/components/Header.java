@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import pages.SearchFlightPage;
 
 public class Header extends BasePage {
 
@@ -48,6 +49,11 @@ public class Header extends BasePage {
 
     public Header(WebDriver driver) {
         super(driver);
+    }
+
+    public SearchFlightPage clickSearchFlightLink() {
+        flightsLink.click();
+        return new SearchFlightPage(getDriver());
     }
 
     public WebElement getVacationPagesLink() {

@@ -3,6 +3,7 @@ package pages;
 import components.FlightCard;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import utils.WebDriverWaitUtils;
 
@@ -24,14 +25,16 @@ public class FlightResultPage extends BasePage{
         flightCard = new FlightCard(getDriver());
     }
 
+    public FlightCard getFlightCard(){
+        return flightCard;
+    }
+
     public String getCityTitle() {
         WebDriverWaitUtils.waitVisibilityOfElement(getDriver(), cityTitle);
         return cityTitle.getText();
     }
 
-    public FlightCard getFlightCard(){
-        return flightCard;
-    }
+
 
 
 

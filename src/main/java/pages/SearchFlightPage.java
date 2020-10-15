@@ -4,10 +4,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pagesPaths.fligths.SetFlightsHeader;
+import services.ICompleteFlightsForm;
 
 import java.util.List;
 
 public class SearchFlightPage extends BasePage{
+
+
+    public ICompleteFlightsForm getiCompleteFlightsForm() {
+        return iCompleteFlightsForm;
+    }
+
+    private ICompleteFlightsForm iCompleteFlightsForm;
+
+
 
     @FindBy(xpath = "//button[@data-stid='location-field-leg1-origin-menu-trigger']")
     private WebElement leavingFromButton;
@@ -37,9 +48,12 @@ public class SearchFlightPage extends BasePage{
     private WebElement dropDownToCity;
 
 
+
     public SearchFlightPage(WebDriver driver) {
         super(driver);
+        this.iCompleteFlightsForm = new SetFlightsHeader();
     }
+
 
     public WebElement getLeavingFromButton() {
         return leavingFromButton;

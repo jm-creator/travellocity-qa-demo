@@ -1,22 +1,19 @@
-package services;
+package pagesPaths.fligths;
 
-import components.Header;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import pages.FlightResultPage;
-import pages.HomePage;
 import pages.SearchFlightPage;
+import services.ICompleteFlightsForm;
 import utils.WebDriverWaitUtils;
 
-public interface IFlightService {
-
-    default SearchFlightPage goToSearchFlightPage(HomePage homePage) {
-        Header header = homePage.getHeader();
-        header.getFlightsLink().click();
-        return new SearchFlightPage(homePage.getDriver());
-    }
-
-    default FlightResultPage goToFlightResultPage(SearchFlightPage searchFlightPage, String fromCity, String toCity) {
-        WebDriverWaitUtils.waitUntilClickableOfElement(searchFlightPage.getDriver(), searchFlightPage.getLeavingFromButton());
+public class SetFlightsHeader implements ICompleteFlightsForm<SearchFlightPage> {
+    @Override
+    public FlightResultPage setInfoAndSearchFlights(SearchFlightPage searchFlightPage, String fromCity, String toCity) {
+        WebDriverWait wait = new WebDriverWait(searchFlightPage.getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(searchFlightPage.getLeavingFromButton()));
 
         WebElement leavingFromButton = searchFlightPage.getLeavingFromButton();
         leavingFromButton.click();
@@ -35,5 +32,6 @@ public interface IFlightService {
 
         return new FlightResultPage(searchFlightPage.getDriver());
     }
+
 
 }
