@@ -13,7 +13,7 @@ mvn clean test
 - page factory
 
 algorithm to verify that the order by time duration is true.
-travellocity-qa/src/main/java/components/FlightCard
+travellocity-qa/src/main/java/components/FlightCard.java
 ```java
     public boolean sortByDurationSorted() {
         WebDriverWaitUtils.waitUntilClickableOfElement(getDriver(), sortDropdownBy);
